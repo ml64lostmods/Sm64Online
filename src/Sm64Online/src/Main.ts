@@ -45,6 +45,8 @@ export class Sm64Online implements IPlugin, IPluginServerConfig {
 	}
 
 	handle_puppets(scene: number, visible: boolean) {
+		if (this.ModLoader.emulator.rdramRead32(0x8033EFFC) < 50) return;
+
 		this.pMgr.scene = scene;
 		this.pMgr.onTick(this.curScene !== -1 && visible);
 	}
@@ -67,6 +69,8 @@ export class Sm64Online implements IPlugin, IPluginServerConfig {
 			bufData[i] |= bufStorage[i];
 			this.core.save[profile].set(i, bufData[i]);
 			needUpdate = true;
+
+			this.ModLoader.log("The byte was " + i + ". If the hat glitch occured when this sync'd, please report to spiceywolf!");
 		}
 
 		// Send Changes to Server

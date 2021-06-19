@@ -19,7 +19,8 @@
       "SuperMario64/*": [
         "libs/SuperMario64/*"
       ]
-    }
+    },
+    "noImplicitAny": false
   },
   "include": [
     "src/**/*.ts",
