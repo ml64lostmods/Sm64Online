@@ -70,7 +70,7 @@ export class Sm64Online implements IPlugin, IPluginServerConfig {
 			this.core.save[profile].set(i, bufData[i]);
 			needUpdate = true;
 
-			this.ModLoader.log("The byte was " + i + ". If the hat glitch occured when this sync'd, please report to spiceywolf!");
+			this.ModLoader.logger.info("The byte was " + i + ". If the hat glitch occured when this sync'd, please report to spiceywolf!");
 		}
 
 		// Send Changes to Server
