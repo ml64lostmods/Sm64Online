@@ -1,13 +1,23 @@
-// Universal data for client AND server side in here
-export class Database {
+export class FileData {
     save_data: Buffer = Buffer.alloc(0x70);
     star_count = 0;
 }
 
-// Client only data here
-export class DatabaseClient extends Database { }
+export class Database {
+    file: FileData[] = Array<FileData>(3);
 
-// Server only data here
+    constructor() {
+        this.file[0] = new FileData();
+        this.file[1] = new FileData();
+        this.file[2] = new FileData();
+        this.file[3] = new FileData();
+    }
+}
+
+export class DatabaseClient extends Database {
+    curScn: number = -1;
+}
+
 export class DatabaseServer extends Database {
     // Puppets
     playerInstances: any = {};

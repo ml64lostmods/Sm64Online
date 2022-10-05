@@ -2,7 +2,7 @@
   "rootDir": "./",
   "outDir": "build",
   "compilerOptions": {
-    "rootDir": "./",
+    "rootDir": "./src",
     "target": "ESNEXT",
     "module": "commonjs",
     "sourceMap": true,
@@ -13,11 +13,11 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
+      "@sound/*": [
+        "./build/emulator/*"
+      ],
       "@Sm64Online/*": [
         "./src/Sm64Online/*"
-      ],
-      "SuperMario64/*": [
-        "libs/SuperMario64/*"
       ]
     },
     "noImplicitAny": false
@@ -27,12 +27,14 @@
     "test/**/*.ts",
     "mods/**/*.ts",
     "cores/**/*.ts",
-    "bin/paker.ts"
+    "bin/paker.ts",
+	  "tools/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "API",
     "build.ts",
-    "build"
+    "build",
+    "cores"
   ]
 }

@@ -1,38 +1,65 @@
 import { Packet, UDPPacket } from 'modloader64_api/ModLoaderDefaultImpls';
+import * as DB from './Database';
 import * as PData from '../puppet/Instance';
 
 export class SyncStorage extends Packet {
-  save_data: Buffer = Buffer.alloc(0x70);
-  star_count = 0;
-  constructor(lobby: string, save_data: Buffer, star_count: number) {
-    super('SyncStorage', 'Sm64Online', lobby, false);
-    this.save_data = save_data;
-    this.star_count = star_count;
+  file: DB.FileData[];
+  constructor(
+      lobby: string,
+      file: DB.FileData[]
+  ) {
+      super('SyncStorage', 'Sm64Online', lobby, false);
+      this.file = file;
   }
 }
 
 export class SyncBuffered extends Packet {
+  team: number;
   value: Buffer;
-  constructor(lobby: string, header: string, value: Buffer, persist: boolean) {
+  constructor(
+    lobby: string,
+    header: string,
+    team: number,
+    value: Buffer,
+    persist: boolean
+) {
     super(header, 'Sm64Online', lobby, persist);
+    this.team = team;
     this.value = value;
   }
 }
 
 export class SyncPointedBuffer extends Packet {
+  team: number;
   address: number;
-  data: Buffer;
-  constructor(lobby: string, header: string, address: number, data: Buffer, persist: boolean) {
+  value: Buffer;
+  constructor(
+    lobby: string,
+    header: string,
+    team: number,
+    address: number,
+    value: Buffer,
+    persist: boolean
+) {
     super(header, 'Sm64Online', lobby, persist);
+    this.team = team;
     this.address = address;
-    this.data = data;
+    this.value = value;
   }
 }
 
 export class SyncNumber extends Packet {
+  team: number;
   value: number;
-  constructor(lobby: string, header: string, value: number, persist: boolean) {
+  constructor(
+    lobby: string,
+    header: string,
+    team: number,
+    value: number,
+    persist: boolean
+  ) {
     super(header, 'Sm64Online', lobby, persist);
+    this.team = team;
     this.value = value;
   }
 }
